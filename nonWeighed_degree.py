@@ -14,6 +14,7 @@ db = client.solarsystem
 collection = db.sun
 query={
 	"authors":{"$exists": True},
+
 }
 projection={
 	
@@ -22,28 +23,10 @@ projection={
 rm =list(collection.find(query,projection))
 x=[y['authors'] for y in rm]
 di=defaultdict(list)
-authorsIn=[]
+authorsIn=[]             #No. of authors
+papersI=defaultdict(int) #No. of papers of an author
 
-for i in x:
-	for k in i:
-		if k not in authorsIn:
-			authorsIn.append(k)
-
-
-for i in x:
-	for k in i:
-		for name in i:
-			if name not in di[k]:
-				di[k].append(name)
-				
-
-degI=defaultdict(int)
-for x in authorsIn:
-	degI[x]=len(di[x])-1
-
-
- 
-loc = ("/Users/apoorvasingh/Downloads/Indian Data Set of Faculties.xlsx")
+loc = ("C:\Users\Akanksha Chandna\Downloads\Indian_faculty.xlsx")
  
 wb = xlrd.open_workbook(loc)
 sheet = wb.sheet_by_index(0)
@@ -54,17 +37,38 @@ sheet.cell_value(3, 3)
 for i in range(2,sheet.nrows):
     authorNameIn.append(sheet.cell_value(i,3))
 
+
+for i in x:
+	for k in i:
+		if k not in authorsIn:
+			authorsIn.append(k)
+		papersI[k]=papersI[k]+1
+
+
+for i in x:
+	for k in i:
+		for name in i:
+			if name not in di[k] and name in authorNameIn:
+				di[k].append(name)
+				
+
+degI=defaultdict(int)
+for j in authorsIn:
+	degI[j]=len(di[j])-1
+
+
 countIn=defaultdict(int)
 for name in authorNameIn:
 	c=degI[name]
-	if c!=0:
-		countIn[c]=countIn[c]+1
+	countIn[c]=countIn[c]+1
+
 print(countIn)
 x1=[]
 y1=[]
 for key in countIn:
-	x1.append(key)
-	y1.append(countIn[key])
+	if key!=0:
+		x1.append(key)
+		y1.append(countIn[key])
 
 
 
@@ -81,28 +85,7 @@ project={
 
 rms =list(collect.find(quer,project))
 z=[y['authors'] for y in rms]
-du=defaultdict(list)
-authors=[]
-
-for i in z:
-	for k in i:
-		if k not in authors:
-			authors.append(k)
-
-
-for i in z:
-	for k in i:
-		for name in i:
-			if name not in du[k]:
-				du[k].append(name)
-				
-
-degU=defaultdict(int)
-for x in authors:
-	degU[x]=len(du[x])-1
-
- 
-wb = xlrd.open_workbook("/Users/apoorvasingh/Downloads/USA Faculties.xlsx")
+wb = xlrd.open_workbook("C:\Users\Akanksha Chandna\Downloads\USA Faculties.xlsx")
 sheet = wb.sheet_by_index(0)
  
 
@@ -112,19 +95,42 @@ authorNameUs=[]
 for i in range(2,sheet.nrows):
     authorNameUs.append(sheet.cell_value(i,3))
 
+du=defaultdict(list)
+authors=[]
+papersU=defaultdict(int)
+for i in z:
+	for k in i:
+		if k not in authors:
+			authors.append(k)
+		papersU[k]=papersU[k]+1;
+
+for i in z:
+	for k in i:
+		for name in i:
+			if name not in du[k] and name in authorNameUs :
+				du[k].append(name)
+				
+
+degU=defaultdict(int)
+for x in authors:
+	degU[x]=len(du[x])-1
+
+ 
+
 
 countU=defaultdict(int)
 for name in authorNameUs:
 	c=degU[name]
-	if c!=0:
-		countU[c]=countU[c]+1
+	countU[c]=countU[c]+1
+
 print(countU)
 
 x2=[]
 y2=[]
 for key in countU:
-	x2.append(key)
-	y2.append(countU[key])
+	if key!=0:
+		x2.append(key)
+		y2.append(countU[key])
 
 style.use('ggplot')
 fig, axs = plt.subplots()
@@ -134,7 +140,7 @@ plt.subplots_adjust(left=None, bottom=None, right=None, top=None,
 
 plt.title('Collaboration of authors')
 plt.ylabel('authors count')
-plt.xlabel('Degree Count')
+plt.xlabel('Non-weighted Degree Count')
 s1=len(x1)
 s2=len(x2)
 for i in range(0,s1):
