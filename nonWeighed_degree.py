@@ -74,7 +74,7 @@ for key in countIn:
 
 dbs = client.vehicle
 collect = dbs.car
-quer={
+query={
 	"authors":{"$exists": True},
 
 }
@@ -83,7 +83,7 @@ project={
 	"authors":[],
 }
 
-rms =list(collect.find(quer,project))
+rms =list(collect.find(query,project))
 z=[y['authors'] for y in rms]
 wb = xlrd.open_workbook("C:\Users\Akanksha Chandna\Downloads\USA Faculties.xlsx")
 sheet = wb.sheet_by_index(0)
