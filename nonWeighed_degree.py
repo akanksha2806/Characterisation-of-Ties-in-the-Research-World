@@ -26,7 +26,7 @@ di=defaultdict(list)
 authorsIn=[]             #No. of authors
 papersI=defaultdict(int) #No. of papers of an author
 
-loc = ("C:\Users\Akanksha Chandna\Downloads\Indian_faculty.xlsx")
+loc = ("/Users/apoorvasingh/Downloads/Indian_faculty.xlsx")
  
 wb = xlrd.open_workbook(loc)
 sheet = wb.sheet_by_index(0)
@@ -85,7 +85,8 @@ project={
 
 rms =list(collect.find(query,project))
 z=[y['authors'] for y in rms]
-wb = xlrd.open_workbook("C:\Users\Akanksha Chandna\Downloads\USA Faculties.xlsx")
+wb = xlrd.open_workbook("/Users/apoorvasingh/Downloads/USA Faculties.xlsx")
+
 sheet = wb.sheet_by_index(0)
  
 
