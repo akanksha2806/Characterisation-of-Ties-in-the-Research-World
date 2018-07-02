@@ -1,0 +1,63 @@
+Project Summary :
+
+- Characterisation of ties in research community
+
+Phase 1 : Data Collection
+
+1. We got an Data-set available online (Citation dataset having information regarding papers and citations among them) having attributes  : 
+	Paper- Id
+	Paper-Title
+	Authors
+	Publication venue
+	year
+	references Abstract
+
+Site link : https://aminer.org/citation (Version 10)
+
+2. We have manually collected list of faculties ( Computer Science and IT) of Top universities in India as well US (approx 1024 
+faculties name from each country)
+
+
+
+Phase 2 : Data Pre-processing
+
+1. We had filtered Data-set available online according to our requirements i.e
+
+	We filtered only those papers data( which was available online) which were authored by faculties we have collected seperately for India 
+as well as US.
+
+
+
+Phase 3 : Data Storage
+
+1. Since the Data available online was in JSON format it was easy to upload on Mongodb ( made different db and collection for India and US)
+
+
+
+Phase 4 : Data Analysis
+
+Graph 1 : No. Of papers per authors
+Graph 2 : average no. Of references per author
+Graph 3 : average no. Of co-authors per author
+Graph 4 : node degree distribution based on references without weight ( if referred count only 1 otherwise 0)
+Graph 5 : node degree distribution based on references with weight ( count no. Of times referred)
+
+
+Phase 5 : Future Work
+
+Ques. 
+a. Node degree distribution based on co-authors without weight ( i.e If co-authored together count as 1 otherwise 0)
+b. Node degree distribution based on co-authors with weight  ( counting no. of times co-authored together)
+
+Ques. Most influential Researcher based on :
+a. no. of papers
+b. No. of citations
+
+Ques. Most influential researchers Temporally ( Using year attribute of Data-set).
+
+Result enhancement :
+Check for- 1.Centrality measures
+           2. Betweeness Degree
+
+
+
