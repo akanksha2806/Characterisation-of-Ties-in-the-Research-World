@@ -38,17 +38,17 @@ id_a=[y['id'] for y in rm]
 
 
 
-loc = ("/Users/apoorvasingh/Downloads/Indian Data Set of Faculties.xlsx")
+loc = ("/Users/apoorvasingh/Downloads/indiaFilter.xlsx")
  
 wb = xlrd.open_workbook(loc)
 sheet = wb.sheet_by_index(0)
  
 authorNameIn=[]
-sheet.cell_value(3, 3)
+sheet.cell_value(0, 0)
 
 
-for i in range(2,sheet.nrows):
-    authorNameIn.append(sheet.cell_value(i,3))
+for i in range(sheet.nrows):
+    authorNameIn.append(sheet.cell_value(i,0))
 
 
 papers_of_authors=defaultdict(list)
@@ -95,7 +95,7 @@ for i in authorNameIn:
   for j in arr:
     variance = variance + ( avg- j) ** 2
   if len(arr)!=0:
-    sds=variance/len(arr)
+    variance=variance/len(arr)
     sd=variance ** 0.5
   else: sd=0
 
