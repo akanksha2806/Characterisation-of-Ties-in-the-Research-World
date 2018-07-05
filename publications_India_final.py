@@ -42,7 +42,7 @@ for i in authUs:
   p=p+1
 
 
-loc = ("/Users/apoorvasingh/Downloads/indiaFilter.xlsx")
+loc = ("/Users/apoorvasingh/Downloads/filterindia.xlsx")
  
 wb = xlrd.open_workbook(loc)
 sheet = wb.sheet_by_index(0)
