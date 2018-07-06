@@ -42,7 +42,7 @@ for i in authUs:
   p=p+1
 
 
-loc = ("/Users/apoorvasingh/Downloads/filterindia.xlsx")
+loc = ("/Users/apoorvasingh/Downloads/projfilterindia.xlsx")
  
 wb = xlrd.open_workbook(loc)
 sheet = wb.sheet_by_index(0)
@@ -100,7 +100,7 @@ for i in authorNameUs:
   c=c+1
 c=c+1
 
-wb.save('India_publications_new.xls')
+wb.save('India_task2_output.xls')
 
 
 

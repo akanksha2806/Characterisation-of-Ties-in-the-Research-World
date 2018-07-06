@@ -19,8 +19,8 @@ from statistics import mean
 
 '''India--------------------------------------------------------------------------'''
 client = MongoClient()
-db = client.solarsystem
-collection = db.sun
+db = client.vehicle
+collection = db.car
 query={
   "authors":{"$exists": True},
   "id":{"$exists": True}
@@ -38,7 +38,7 @@ id_a=[y['id'] for y in rm]
 
 
 
-loc = ("/Users/apoorvasingh/Downloads/filterindia.xlsx")
+loc = ("/Users/apoorvasingh/Downloads/projfilterusa.xlsx")
  
 wb = xlrd.open_workbook(loc)
 sheet = wb.sheet_by_index(0)
@@ -112,5 +112,5 @@ for i in authorNameIn:
 
   c=c+1
 
-wb.save('co_authorsI.xls')
+wb.save('USA_task5_output.xls')
 
